@@ -1,18 +1,13 @@
 .gallery {
-    display:flex;
-    flex-wrap: wrap;
-    gap: 32px; 
+  
 }
 
 .cocktail-card {
+
    height: 556px;
-    flex-basis: calc((100% - 62px) / 3);
-
-    box-shadow: 10px 10px 18px -12px rgb(115, 120, 175);
-    background: radial-gradient(circle 610px at 5.2% 51.6%, rgba(247, 237, 255, 0.625) 0%, rgba(237, 237, 255, 0.668) 97.5%) no-repeat fixed;
-
-    transition: transform 250ms linear;
-
+    flex-basis: calc((100% - 64px) / 3);
+   
+    
     &:hover,
     &:focus {
         transform: scale(1.08);

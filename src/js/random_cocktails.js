@@ -16,6 +16,7 @@ const coctailF = fetchRandomCoctail();
 const coctailG = fetchRandomCoctail();
 const coctailH = fetchRandomCoctail();
 const coctailI = fetchRandomCoctail();
+
 Promise.all([
   coctailA,
   coctailB,
@@ -39,7 +40,7 @@ function createMarkupCocktails(cocktails) {
       console.log(cocktail.data.drinks[0].strDrink);
       return ` <div class = "cocktail-card">
           <img class="gallery-image" src="${cocktail.data.drinks[0].strDrinkThumb}" alt="${cocktail.data.drinks[0].strDrink}" width="395" height="395" loading="lazy"/>
-${cocktail.data.drinks[0].strDrink}</div>`;
+<p class = "cocktail-name">${cocktail.data.drinks[0].strDrink}</p>`;
     })
     .join('');
 }
