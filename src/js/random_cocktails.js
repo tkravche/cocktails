@@ -7,27 +7,13 @@ async function fetchRandomCoctail() {
   const response = await axios.get(`${BASE_URL}`);
   return response;
 }
-const coctailA = fetchRandomCoctail();
-const coctailB = fetchRandomCoctail();
-const coctailC = fetchRandomCoctail();
-const coctailD = fetchRandomCoctail();
-const coctailE = fetchRandomCoctail();
-const coctailF = fetchRandomCoctail();
-const coctailG = fetchRandomCoctail();
-const coctailH = fetchRandomCoctail();
-const coctailI = fetchRandomCoctail();
+const numberOfCocktails = 3;
+const randomCocktails = [];
+for (let i = 0; i < numberOfCocktails; i++){
+  randomCocktails.push(fetchRandomCoctail());
+}
 
-Promise.all([
-  coctailA,
-  coctailB,
-  coctailC,
-  coctailD,
-  coctailE,
-  coctailF,
-  coctailG,
-  coctailH,
-  coctailI,
-])
+Promise.all(randomCocktails)
   .then(cocktails => {
     const markupCocktails = createMarkupCocktails(cocktails);
     updateMarkup(markupCocktails);
@@ -38,9 +24,18 @@ function createMarkupCocktails(cocktails) {
   return cocktails
     .map(cocktail => {
       console.log(cocktail.data.drinks[0].strDrink);
-      return ` <div class = "cocktail-card">
-          <img class="gallery-image" src="${cocktail.data.drinks[0].strDrinkThumb}" alt="${cocktail.data.drinks[0].strDrink}" width="395" height="395" loading="lazy"/>
-<p class = "cocktail-name">${cocktail.data.drinks[0].strDrink}</p>`;
+      return ` <div class="container">
+                 <li class="coctails__item">
+                <img class="coctails__img" src="${cocktail.data.drinks[0].strDrinkThumb}" "${cocktail.data.drinks[0].strDrink}">
+                <div class="coctails__descr">
+                    <h3 class="coctails__name">${cocktail.data.drinks[0].strDrink}</h3>
+                    <div class="coctails__btns">
+                        <button class="btn__learn" type="button">Learn more</button>
+                        <button class="btn__delete" type="button">Remove</button>
+                    </div>
+                </div>
+            </li><div class = "cocktail-card">
+          `;
     })
     .join('');
 }
